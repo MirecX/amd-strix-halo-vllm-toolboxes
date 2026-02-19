@@ -303,6 +303,27 @@ def configure_and_launch_vllm(model_idx, head_ip):
     # Exec
     os.execvpe("vllm", cmd, env)
 
+def setup_ips_dialog(current_head, current_worker):
+    # Using a form to edit both IPs
+    # label y x item y x flen ilen
+    form_args = [
+        "--title", "Cluster Configuration",
+        "--form", "Enter IP addresses for Head and Worker nodes:",
+        "10", "60", "2",
+        "Head Node IP:", "1", "1",  current_head, "1", "20", "20", "0",
+        "Worker Node IP:", "2", "1", current_worker, "2", "20", "20", "0"
+    ]
+    
+    result = run_dialog(form_args)
+    if not result:
+        return None
+        
+    lines = result.splitlines()
+    if len(lines) >= 2:
+        return lines[0].strip(), lines[1].strip()
+    return None
+
+
 def main():
     check_dependencies()
     
