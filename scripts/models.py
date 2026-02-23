@@ -10,6 +10,7 @@ MODEL_TABLE = {
     
     "google/gemma-3-12b-it": {
         "trust_remote": False,
+        "enforce_eager": True,
         "valid_tp": [1, 2],
         "max_num_seqs": "64",
         "max_tokens": "32768" 
