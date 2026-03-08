@@ -70,7 +70,7 @@ RUN export HIP_DEVICE_LIB_PATH=$(find /opt/rocm -type d -name bitcode -print -qu
   echo "Compiling with Bitcode: $HIP_DEVICE_LIB_PATH" && \
   export CMAKE_ARGS="-DROCM_PATH=/opt/rocm -DHIP_PATH=/opt/rocm -DAMDGPU_TARGETS=gfx1151 -DHIP_ARCHITECTURES=gfx1151" && \   
   python -m pip wheel --no-build-isolation --no-deps -w /tmp/dist -v . && \
-  python -m pip install /tmp/dist/*.whl
+  python -m pip install --no-deps /tmp/dist/*.whl
 
 RUN python -m pip install ray
 
