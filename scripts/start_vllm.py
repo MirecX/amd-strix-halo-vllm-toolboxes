@@ -322,6 +322,7 @@ def configure_and_launch(model_idx, gpu_count):
     
     # Env Vars
     env = os.environ.copy()
+    env["VLLM_DISABLE_COMPILE_CACHE"] = "1"
     env.update(config.get("env", {}))
     
     if use_rocm_attn:

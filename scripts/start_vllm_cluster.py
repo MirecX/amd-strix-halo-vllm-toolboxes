@@ -263,6 +263,7 @@ def configure_and_launch_vllm(model_idx, head_ip):
     print(f"Detected RDMA Interface: {rdma_iface}")
     
     env = os.environ.copy()
+    env["VLLM_DISABLE_COMPILE_CACHE"] = "1"
     env["RAY_EXPERIMENTAL_NOSET_ROCR_VISIBLE_DEVICES"] = "1"
     env["VLLM_HOST_IP"] = head_ip
     env["NCCL_SOCKET_IFNAME"] = rdma_iface

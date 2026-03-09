@@ -140,6 +140,7 @@ def get_cluster_env():
     host_ip = get_local_ip(rdma_iface)
     
     env = os.environ.copy()
+    env["VLLM_DISABLE_COMPILE_CACHE"] = "1"
     
     # Critical Cluster Envs (Match start_vllm_cluster.py)
     env["RAY_EXPERIMENTAL_NOSET_ROCR_VISIBLE_DEVICES"] = "1"

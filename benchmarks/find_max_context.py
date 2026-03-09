@@ -137,6 +137,7 @@ def get_vllm_server_cmd(model, tp_size, util, max_len, max_seqs):
     
     # Env Setup
     env = os.environ.copy()
+    env["VLLM_DISABLE_COMPILE_CACHE"] = "1"
     env.update(config.get("env", {}))
 
     # CLUSTER / RAY LOGIC
